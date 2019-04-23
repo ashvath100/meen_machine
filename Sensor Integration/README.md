@@ -12,7 +12,5 @@ This folder consists codes for all the sensors we are  gonna use for our AUV. Th
 
 ## Acknowledgments
 
-* ROS Documentation
-* Anis Kouba
 
 
