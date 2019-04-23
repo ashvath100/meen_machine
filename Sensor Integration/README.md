@@ -6,7 +6,7 @@ This folder consists codes for all the sensors we are  gonna use for our AUV. Th
 3)Leak Sensor
 4)Temperature Sensor
 
-## Authors* 
+## Authors
 **Druvang wagh** - [Druv98](https://github.com/Druv98)
 
 
