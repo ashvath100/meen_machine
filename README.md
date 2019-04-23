@@ -1,2 +1,2 @@
 # meen-machine
-Files for the SAUVC bot built by VIT
+Files for the SAUVC vehicle built by V-AUV VIT
