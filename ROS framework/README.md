@@ -4,15 +4,15 @@ This folder is the brain of our AUV. It consists of the ROS nodes we will be lau
 
 ## Authors
 **Aarushi Mehta** - [weatherwaxed](https://github.com/weatherwaxed)
+
 **Ashvath** - [ashvath100](https://github.com/ashvath100)
+
 **Druvang wagh** - [Druv98](https://github.com/Druv98)
 
 
 ## Acknowledgments
 
-*ROS documentation
-*Dr Anis Kouba
-
-
+* ROS Documentation
+* Anis Kouba
 
 
