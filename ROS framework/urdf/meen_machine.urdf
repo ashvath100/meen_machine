@@ -6,13 +6,13 @@
   <link name="thruster_1">
     <!-- <buoyancy><compensation>1.0</compensation></buoyancy> -->
     <visual>
-    <origin xyz="5.25 -0.26 -5.1" rpy="0 1.57 0"/>
+    <origin xyz="0.25 10.26 0.1" rpy="0 1.57 0"/>
     <geometry>
       <mesh filename="package://bluerov_ros_playground/meshes/T100.STL" />
     </geometry>
     </visual>
     <collision>
-    <origin xyz="0 0 0" rpy="0 1.57 0"/>
+    <origin xyz="0.25 10.26 0.1" rpy="0 1.57 0"/>
     <geometry>
       <mesh filename="package://bluerov_ros_playground/meshes/T100.STL" />
     </geometry>
@@ -118,10 +118,10 @@
     </buoyancy> -->
   </link>
 
-  <joint name="thruster_1_base_link" type="continuous">
+  <joint name="thruster_1_base_link" type="fixed">
         <parent link="base_link"/>
         <child link="thruster_1"/>
-        <origin rpy="3.14 0 0" xyz="5.25 -4.26 -5.1"/>
+        <origin rpy="0 0 0" xyz="0.25 10.26 0.1"/>
       </joint>
 
 </robot>
