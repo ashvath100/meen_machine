@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<robot name="BlueRov2" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+
+
+  <link name="thruster_1">
+    <!-- <buoyancy><compensation>1.0</compensation></buoyancy> -->
+    <visual>
+    <origin xyz="-120 -14 96" rpy="0 1.57 0"/>
+    <geometry>
+      <mesh filename="package://bluerov_ros_playground/meshes/T100.STL" />
+    </geometry>
+    </visual>
+    <collision>
+    <origin xyz="-120 -14 96" rpy="0 1.57 0"/>
+    <geometry>
+      <mesh filename="package://bluerov_ros_playground/meshes/T100.STL" />
+    </geometry>
+    </collision>
+    <!-- <inertial>
+      <mass value=".1"/>
+      <inertia
+      ixx=".1"
+      ixy="0.0"
+      ixz="0.0"
+      iyy=".1"
+      iyz="0.0"
+      izz=".1"/>
+    </inertial> -->
+     </link>
+
+      
+
+
+
+<!--           <gazebo> -->
+    <!-- Gazebo plugin listens to the body-->
+<!--     <plugin name="freefloating_gazebo_control" filename="libfreefloating_gazebo_control.so">
+        <switchService>switch</switchService>
+        <updateRate>100</updateRate>
+        <link>base_link</link> -->
+
+        <!-- for each thruster, give the map to XYZ+RPY and the maximum effort -->
+        <!-- Based on 6 thrusters vectored frame https://www.ardusub.com/images/vectored-frame.png -->
+        <!-- BlueRov2 CAD https://grabcad.com/library/bluerov2-1 -->
+   <!--      <thruster>
+            <effort>30</effort>
+            <name>thruster_1</name>
+            <map>0.707 0.707 0 0 0 -0.167</map>
+        </thruster> -->
+        <!-- <thruster>
+            <effort>30</effort>
+            <name>thr2</name>
+            <map>-0.707 0.707 0 0 0 0.167</map>
+        </thruster>
+        <thruster>
+            <effort>30</effort>
+            <name>thr3</name>
+            <map>0.707 -0.707 0 0 0 0.167</map>
+        </thruster>
+        <thruster>
+            <effort>30</effort>
+            <name>thr4</name>
+            <map>-0.707 -0.707 0 0 0 -0.167</map>
+        </thruster>
+        <thruster>
+            <effort>30</effort>
+            <name>thr5</name>
+            <map>0 0 -1 0 -0.111 0</map>
+        </thruster>
+        <thruster>
+            <effort>30</effort>
+            <name>thr6</name>
+            <map>0 0 -1 0 0.111 0</map>
+        </thruster> -->
+<!--     </plugin>
+    </gazebo> -->
+
+    <link name="base_link">
+    <visual>
+      <origin xyz="0.25 -0.26 -0.1" rpy="-1.57 -3.14 0"/>
+      <geometry>
+        <mesh filename="package://bluerov_ros_playground/meshes/newauv.STL"/>
+      </geometry>
+    </visual>
+<!--     <inertial> -->
+<!--       <origin xyz="-0.25 -0.26 0.1" rpy="0 0 0"/> -->
+     <!--  <mass value="11"/>
+    <inertia
+      ixx="1"
+      ixy="0"
+      ixz="0"
+      iyy="1"
+      iyz="0"
+      izz="1"/>
+    </inertial>  -->
+    <collision>
+      <origin xyz="0.25 -0.26 -0.1" rpy="-1.57 -3.14 0"/>
+      <geometry>
+        <mesh filename="package://bluerov_ros_playground/meshes/auvmm.STL"/>
+      </geometry>
+    </collision>
+    <!-- <buoyancy>
+        <compensation>0.2525</compensation>
+        <origin xyz= "0.12585 0.111 -0.8945"/>
+    </buoyancy>
+    <buoyancy>
+        <compensation>0.2525</compensation>
+        <origin xyz= "-0.12585 0.111 -0.8945"/>
+    </buoyancy>
+    <buoyancy>
+        <compensation>0.2525</compensation>
+        <origin xyz= "-0.12585 -0.111 -0.8945"/>
+    </buoyancy>
+    <buoyancy>
+        <compensation>0.2525</compensation>
+        <origin xyz= "0.12585 -0.111 -0.8945"/>
+    </buoyancy> -->
+  </link>
+
+  <joint name="thruster_1_base_link" type="fixed">
+        <parent link="base_link"/>
+        <child link="thruster_1"/>
+        <origin rpy="0 0 0" xyz="0.25 10.26 100"/>
+      </joint>
+
+</robot>
