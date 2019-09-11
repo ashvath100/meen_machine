@@ -3,7 +3,7 @@
 
 
 
-  <link name="thruster_1">
+  <link name="thruster_3">
     <!-- <buoyancy><compensation>1.0</compensation></buoyancy> -->
     <visual>
     <origin xyz="-120 -14 96" rpy="0 1.57 0"/>
@@ -29,54 +29,89 @@
     </inertial> -->
      </link>
 
+     <link name="thruster_4">
+    <!-- <buoyancy><compensation>1.0</compensation></buoyancy> -->
+    <visual>
+    <origin xyz="-443 8 96" rpy="0 1.57 0"/>
+    <geometry>
+      <mesh filename="package://bluerov_ros_playground/meshes/T100.STL" />
+    </geometry>
+    </visual>
+    <collision>
+    <origin xyz="-443 8 96" rpy="0 1.57 0"/>
+    <geometry>
+      <mesh filename="package://bluerov_ros_playground/meshes/T100.STL" />
+    </geometry>
+    </collision>
+    <!-- <inertial>
+      <mass value=".1"/>
+      <inertia
+      ixx=".1"
+      ixy="0.0"
+      ixz="0.0"
+      iyy=".1"
+      iyz="0.0"
+      izz=".1"/>
+    </inertial> -->
+     </link>
+
+     <link name="thruster_2">
+    <!-- <buoyancy><compensation>1.0</compensation></buoyancy> -->
+    <visual>
+    <origin xyz="-120 395 96" rpy="0 1.57 0"/>
+    <geometry>
+      <mesh filename="package://bluerov_ros_playground/meshes/T100.STL" />
+    </geometry>
+    </visual>
+    <collision>
+    <origin xyz="-120 395 96" rpy="0 1.57 0"/>
+    <geometry>
+      <mesh filename="package://bluerov_ros_playground/meshes/T100.STL" />
+    </geometry>
+    </collision>
+    <!-- <inertial>
+      <mass value=".1"/>
+      <inertia
+      ixx=".1"
+      ixy="0.0"
+      ixz="0.0"
+      iyy=".1"
+      iyz="0.0"
+      izz=".1"/>
+    </inertial> -->
+     </link>
+
+     <link name="thruster_1">
+    <!-- <buoyancy><compensation>1.0</compensation></buoyancy> -->
+    <visual>
+    <origin xyz="-450 375 96" rpy="0 1.57 0"/>
+    <geometry>
+      <mesh filename="package://bluerov_ros_playground/meshes/T100.STL" />
+    </geometry>
+    </visual>
+    <collision>
+    <origin xyz="-450 375 96" rpy="0 1.57 0"/>
+    <geometry>
+      <mesh filename="package://bluerov_ros_playground/meshes/T100.STL" />
+    </geometry>
+    </collision>
+    <!-- <inertial>
+      <mass value=".1"/>
+      <inertia
+      ixx=".1"
+      ixy="0.0"
+      ixz="0.0"
+      iyy=".1"
+      iyz="0.0"
+      izz=".1"/>
+    </inertial> -->
+     </link>
+
       
 
 
 
-<!--           <gazebo> -->
-    <!-- Gazebo plugin listens to the body-->
-<!--     <plugin name="freefloating_gazebo_control" filename="libfreefloating_gazebo_control.so">
-        <switchService>switch</switchService>
-        <updateRate>100</updateRate>
-        <link>base_link</link> -->
-
-        <!-- for each thruster, give the map to XYZ+RPY and the maximum effort -->
-        <!-- Based on 6 thrusters vectored frame https://www.ardusub.com/images/vectored-frame.png -->
-        <!-- BlueRov2 CAD https://grabcad.com/library/bluerov2-1 -->
-   <!--      <thruster>
-            <effort>30</effort>
-            <name>thruster_1</name>
-            <map>0.707 0.707 0 0 0 -0.167</map>
-        </thruster> -->
-        <!-- <thruster>
-            <effort>30</effort>
-            <name>thr2</name>
-            <map>-0.707 0.707 0 0 0 0.167</map>
-        </thruster>
-        <thruster>
-            <effort>30</effort>
-            <name>thr3</name>
-            <map>0.707 -0.707 0 0 0 0.167</map>
-        </thruster>
-        <thruster>
-            <effort>30</effort>
-            <name>thr4</name>
-            <map>-0.707 -0.707 0 0 0 -0.167</map>
-        </thruster>
-        <thruster>
-            <effort>30</effort>
-            <name>thr5</name>
-            <map>0 0 -1 0 -0.111 0</map>
-        </thruster>
-        <thruster>
-            <effort>30</effort>
-            <name>thr6</name>
-            <map>0 0 -1 0 0.111 0</map>
-        </thruster> -->
-<!--     </plugin>
-    </gazebo> -->
-
-    <link name="base_link">
+   <link name="base_link">
     <visual>
       <origin xyz="0.25 -0.26 -0.1" rpy="-1.57 -3.14 0"/>
       <geometry>
@@ -118,10 +153,28 @@
     </buoyancy> -->
   </link>
 
-  <joint name="thruster_1_base_link" type="fixed">
+  <joint name="thruster_3_base_link" type="fixed">
+        <parent link="base_link"/>
+        <child link="thruster_3"/>
+        <origin rpy="0 0 0" xyz="0.25 10.26 100"/>
+      </joint>
+
+<joint name="thruster_4_base_link" type="fixed">
+        <parent link="base_link"/>
+        <child link="thruster_4"/>
+        <origin rpy="0 0 0" xyz="0.25 -10.26 100"/>
+      </joint>
+
+<joint name="thruster_2_base_link" type="fixed">
+        <parent link="base_link"/>
+        <child link="thruster_2"/>
+        <origin rpy="0 0 0" xyz="-0.25 -10.26 100"/>
+      </joint>
+
+<joint name="thruster_1_base_link" type="fixed">
         <parent link="base_link"/>
         <child link="thruster_1"/>
-        <origin rpy="0 0 0" xyz="0.25 10.26 100"/>
+        <origin rpy="0 0 0" xyz="-0.25 10.26 100"/>                        
       </joint>
 
 </robot>
