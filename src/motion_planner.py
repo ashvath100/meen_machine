@@ -20,7 +20,7 @@ class Controller(object):
             accel_topic = "/rexrov/cmd_accel"
         else:
             odom_topic = "/mavros/global_position/local"
-            vel_topic = "/cmd_vel"
+            vel_topic = "/mavros/setpoint_velocity/cmd_vel"
             accel_topic = "/mavros/setpoint_accel/accel"
 
         # rospy.loginfo(vel_topic)
@@ -35,7 +35,7 @@ class Controller(object):
 
 
         # PUBLISHERS
-        self.pub_cmd_vel = rospy.Publisher(vel_topic, Twist, queue_size=10)
+        self.pub_cmd_vel = rospy.Publisher(vel_topic, TwistStamped, queue_size=10)
 
         self.pub_accel = rospy.Publisher(accel_topic, Accel, queue_size=10)
 
@@ -52,7 +52,7 @@ class Controller(object):
         self.mavros_state = State()
         self.odom = Odometry()
         self.attitude = [0,0,0]
-        self.vel = Twist()
+        self.vel = TwistStamped()
         self.arm_state = False
 
     # FUNCTION TO ARM THE SUB
@@ -95,8 +95,8 @@ class Controller(object):
         if not self.mavros_state.armed:
             self.doArming()
 
-        if self.mavros_state.mode != "ALT_HOLD":
-            self.changeToDepHold()
+        # if self.mavros_state.mode != "ALT_HOLD":
+        #     self.changeToDepHold()
         # ADD logic depending on mavros states
 
     def velocity_publisher(self, data):
