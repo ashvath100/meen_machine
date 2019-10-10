@@ -29,10 +29,19 @@ class FSM(object):
             else:
                 break
         
-        self.Dive(0.1, 5)
-        self.Dive(0, 5)
+        while (True and not self.sim):
+            data = self.controller.changeTostabilize()
+            if data == False:
+                rospy.loginfo("Stabilize Mode Failed, Retrying")
+            else:
+                break
         
-    def Dive(self, speed, sec):
+        self.Throttle(0.1, 5)
+        self.Throttle(0, 5)
+        self.Forward(0.1,5)
+        self.Forward(0,5)
+        
+    def Throttle(self, speed, sec):
     # Add distance or seconds
 
         vel = TwistStamped()
@@ -51,6 +60,27 @@ class FSM(object):
         self.controller.pub_cmd_vel.publish(vel)
         rospy.sleep(1)
         rospy.loginfo("Dive")  
+
+
+    def Forward(self, speed, sec):
+    # Add distance or seconds
+
+        vel = TwistStamped()
+        vel.twist.linear.x = speed
+
+        rospy.loginfo("Starting Forward at Speed: " + str(vel.twist.linear.x))
+        start_time = time.time()
+
+        # sleep rate
+        while time.time() <= start_time + sec:
+            self.controller.pub_cmd_vel.publish(vel)
+            rospy.sleep(0.5)
+
+        vel = TwistStamped()
+        vel.twist.angular.x = 0.0
+        self.controller.pub_cmd_vel.publish(vel)
+        rospy.sleep(1)
+        rospy.loginfo("Forward")  
 
 def main():
 

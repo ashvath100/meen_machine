@@ -22,6 +22,18 @@ class MavrosRC(object):
     def rc_callback(self, vel):
 
         # kPeriod = 0.1
+# Channel	Meaning
+# 1	Pitch
+# 2	Roll
+# 3	Throttle
+# 4	Yaw
+# 5	Forward
+# 6	Lateral
+# 7	Camera Pan
+# 8	Camera Tilt
+# 9	Lights 1 Level
+# 10 Lights 2 Level
+# 11 Video Switch
 
         msg = OverrideRCIn()
 
@@ -29,7 +41,7 @@ class MavrosRC(object):
         msg.channels[1] = 1500
         msg.channels[2] = self.speedToPpm(vel.twist.linear.z)
         msg.channels[3] = 1500
-        msg.channels[4] = 1500
+        msg.channels[4] = self.speedToPpm(vel.twist.linear.x)
         msg.channels[5] = 1500
         msg.channels[6] = 1500
 

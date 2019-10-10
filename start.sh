@@ -9,7 +9,7 @@ sleep 5
 
 # Launch mavros script
 roslaunch meen_machine px41.launch &
-sleep 5;
+sleep 10;
 
 # Launch RC Override node
 rosrun meen_machine mavrosrc.py &
