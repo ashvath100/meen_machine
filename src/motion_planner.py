@@ -37,7 +37,7 @@ class Controller(object):
         # PUBLISHERS
         self.pub_cmd_vel = rospy.Publisher(vel_topic, TwistStamped, queue_size=10)
 
-        self.pub_accel = rospy.Publisher(accel_topic, Accel, queue_size=10)
+        #self.pub_accel = rospy.Publisher(accel_topic, Accel, queue_size=10)
 
         # if not sim:
         #     self.pub_attitude = rospy.Publisher("/mavros/setpoint_raw/attitude")
@@ -74,6 +74,13 @@ class Controller(object):
         data = self.set_mode(custom_mode="ALT_HOLD")
         rospy.loginfo(data)
         return data
+    
+    # changes mode to stablize
+    def changeTostabilize(self):
+        rospy.loginfo("Stabilize Callback")
+        data = self.set_mode(custom_mode="STABILIZE")
+        rospy.loginfo(data)
+        return data
 
     # Odom Callback
     def odom_callback(self, data):
@@ -95,9 +102,9 @@ class Controller(object):
         if not self.mavros_state.armed:
             self.doArming()
 
-        # if self.mavros_state.mode != "ALT_HOLD":
-        #     self.changeToDepHold()
-        # ADD logic depending on mavros states
+        if self.mavros_state.mode != "STABILIZE":
+            self.changeTostabilize()
+        #ADD logic depending on mavros states
 
     def velocity_publisher(self, data):
         self.pub_cmd_vel.publish(data)
