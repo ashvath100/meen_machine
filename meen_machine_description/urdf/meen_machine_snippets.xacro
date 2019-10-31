@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+  <!-- Thruster joint and link snippet -->
+  <!-- CHANGE VALUES OF THE LAST 2 PARAMETERS--> 
+  <xacro:macro name="thruster_macro"
+    params="namespace thruster_id *origin">
+    <xacro:thruster_module_first_order_basic_fcn_macro
+      namespace="${namespace}"
+      thruster_id="${thruster_id}"
+      mesh_filename="file://$(find meen_machine_description)/meshes/T100.STL" 
+      dyn_time_constant="0.05"
+      rotor_constant="0.026546960744430276">
+      <xacro:insert_block name="origin"/>
+    </xacro:thruster_module_first_order_basic_fcn_macro>
+  </xacro:macro>
+</robot>
