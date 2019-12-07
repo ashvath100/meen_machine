@@ -69,14 +69,14 @@ class Controller(object):
         rospy.loginfo(data)
 
     # Changes mode to Depth Hold
-    def changeToDepHold(self):
+    def changeToDepthHold(self):
         rospy.loginfo("Depth Hold Callback")
         data = self.set_mode(custom_mode="ALT_HOLD")
         rospy.loginfo(data)
         return data
     
-    # changes mode to stablize
-    def changeTostabilize(self):
+    # changeys mode to stablize
+    def changeToStabilize(self):
         rospy.loginfo("Stabilize Callback")
         data = self.set_mode(custom_mode="STABILIZE")
         rospy.loginfo(data)
@@ -103,7 +103,7 @@ class Controller(object):
             self.doArming()
 
         if self.mavros_state.mode != "STABILIZE":
-            self.changeTostabilize()
+            self.changeToStabilize()
         #ADD logic depending on mavros states
 
     def velocity_publisher(self, data):

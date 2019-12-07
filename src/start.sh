@@ -15,7 +15,8 @@ sleep 10;
 rosrun meen_machine mavrosrc.py &
 sleep 5;
 
-# Launch either joystick or autonomous control
+# Launch video
+ffmpeg -f v4l2 -video_size 640x480 -i /dev/video0 ~/catkin_ws/src/out.mpg
 
 # Launch the state machine
 rosrun meen_machine fsm.py &

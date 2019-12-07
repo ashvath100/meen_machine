@@ -12,16 +12,14 @@ class FSM(object):
         self.controller = Controller(self.sim)
 
     def fsm_start(self):
+        
+        while (True and not self.sim):
+            data = self.controller.changeToDepthHold()
+            if data == False:
+                 rospy.loginfo("Depth Mode Failed, Retrying")
+            else:
+                break
 
-        # # Change Mode to Depth Hold Mode
-        # while (True and not self.sim):
-        #     data = self.controller.changeToDepHold()
-        #     if data == False:
-        #         rospy.loginfo("Depth Hold Mode Failed, Retrying")
-        #     else:
-        #         break
-
-        # ARM THE SUB IF NOT IN SIM
         while (True and not self.sim):
             data = self.controller.doArming()
             if data == False:
@@ -29,18 +27,9 @@ class FSM(object):
             else:
                 break
         
-        while (True and not self.sim):
-            data = self.controller.changeTostabilize()
-            if data == False:
-                rospy.loginfo("Stabilize Mode Failed, Retrying")
-            else:
-                break
-        
-        self.Throttle(0.1, 5)
-        self.Throttle(0, 5)
-        self.Forward(0.1,5)
-        self.Forward(0,5)
-        
+        self.Throttle(-0.19, 7)
+        self.Forward(0.4, 15)
+
     def Throttle(self, speed, sec):
     # Add distance or seconds
 
@@ -67,7 +56,6 @@ class FSM(object):
 
         vel = TwistStamped()
         vel.twist.linear.x = speed
-
         rospy.loginfo("Starting Forward at Speed: " + str(vel.twist.linear.x))
         start_time = time.time()
 
